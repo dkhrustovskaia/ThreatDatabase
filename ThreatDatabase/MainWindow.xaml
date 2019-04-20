@@ -5,8 +5,92 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThreatDatabase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Background="LightBlue"
+        Title="База данных угроз" Height="450" Width="564.5">
+    <Window.Resources>
+        <DataTemplate x:Key="ThreadListItemTemplate">
+            <Grid Width="{Binding Path=ActualWidth, ElementName=WidthExample}">
+                <Border Background="#44000000" Margin="5" Padding="0, 15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="2"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="{Binding FullNumber}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Fill="LightGray"/>
+                        <TextBox Grid.Column="2" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Margin="10, 0" BorderThickness="0" Background="Transparent" IsHitTestVisible="False"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <Style TargetType="ListBoxItem" x:Key="ThreatListItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ListBox" x:Key="ThreatList">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ThreatListItem}"/>
+            <Setter Property="ItemTemplate" Value="{StaticResource ThreadListItemTemplate}"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
+        <!--Рабочая среда-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="WidthExample" Grid.Column="1" Margin="10" IsHitTestVisible="False"/>
+            
+            <ListBox Name="ListOfThreats" Grid.Column="1" Style="{StaticResource ThreatList}" MouseDoubleClick="ListOfThreats_MouseDoubleClick">
+            </ListBox>
+
+            <Grid Grid.Column="0" Background="LightCoral">
+                <Grid.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="15" Opacity="0.4"/>
+                </Grid.Effect>
+
+                <Image Source="Resources/mafioso.png" VerticalAlignment="Top" Margin="30"/>
+
+                <Button Content="Обновить" Height="35" Width="90" VerticalAlignment="Bottom" Margin="0,0,0,90" Background="Azure" Click="UpdateButton_Click"/>
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20">
+                    <Button Content="Назад" Click="LeftPageButton_Click"/>
+                    <TextBox x:Name="PageLabel" MinWidth="30" TextAlignment="Center"/>
+                    <Button Content="Далее" Click="RightPageButton_Click"/>
+                </WrapPanel>
+            </Grid>
         
+        </Grid>
+        
+        <!--Грид приветствия-->
+        <Grid x:Name="MessageLayer" Background="White" Visibility="Collapsed">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+                <Label x:Name="MessageLayerTitle" HorizontalAlignment="Center" FontSize="30"/>
+                <TextBox x:Name="MessageLayerText" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" HorizontalContentAlignment="Center" TextWrapping="Wrap" Margin="15"/>
+                <Button x:Name="MessageLayerButton" Height="40" Width="120" Click="MessageLayerButton_Click" />
+            </WrapPanel>
+        </Grid>
     </Grid>
+    
+    
 </Window>
