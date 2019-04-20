@@ -13,5 +13,6 @@ namespace ThreatDatabase
     /// </summary>
     public partial class App : Application
     {
+        public static readonly string Directory = @"C:\ProgramData\ThreatDatabase";
     }
 }
