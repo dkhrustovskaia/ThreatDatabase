@@ -1,0 +1,58 @@
+﻿<Window x:Class="ThreatDatabase.ThreatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThreatDatabase"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="ThreatWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden">
+            <WrapPanel x:Name="ListOfValues" Orientation="Vertical" Margin="10,20">
+                <WrapPanel.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="IsHitTestVisible" Value="False"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Margin" Value="7,0,0,0"/>
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                    </Style>
+                </WrapPanel.Resources>
+
+                <Label>Номер:</Label>
+                <TextBox x:Name="NumberLabel"/>
+                <Label>Название:</Label>
+                <TextBox x:Name="NameLabel"/>
+                <Label>Описание:</Label>
+                <TextBox x:Name="DiscriptionLabel"/>
+                <Label>Источник угрозы:</Label>
+                <TextBox x:Name="SourceLabel"/>
+                <Label>Объект воздействия:</Label>
+                <TextBox x:Name="ObjectLabel"/>
+                <Label>Нарушение конфиденциальности:</Label>
+                <TextBox x:Name="IsPrivacyViolationLabel"/>
+                <Label>Нарушение целостности:</Label>
+                <TextBox x:Name="IsIntegrityViolationLabel"/>
+                <Label>Нарушение доступности:</Label>
+                <TextBox x:Name="IsAccessibilityViolationLabel"/>
+            </WrapPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="1" Background="White">
+            <Grid.Effect>
+                <DropShadowEffect Direction="90" BlurRadius="5" ShadowDepth="0"/>
+            </Grid.Effect>
+            <Button x:Name="ThreatLayerOkButton" Margin="0,0,15,0" Content="Ок" Width="70" Height="30" HorizontalAlignment="Right" Click="ThreatLayerOkButton_Click"/>
+            <Label x:Name="ThreatLayerStatusLabel" Margin="15,0,0,0" Padding="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>
